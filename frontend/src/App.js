@@ -6,12 +6,12 @@ import About from './components/About';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Services from './components/Services';
-import Testimonials from './components/Testimonials'; 
+import Testimonials from './components/Testimonials';
 import UserRegistration from './components/UserRegistration';
-import Login from './components/Login';     // ✅ Import Login
-import Signup from './components/Signup';   // ✅ Import Signup
+import Login from './components/Login'; // ✅ Import Login
+import Signup from './components/Signup'; // ✅ Import Signup
 import './App.css';
-
+import GroqChatbot from './components/GroqChatbot'; // ✅ Import GroqChatbot
 function App() {
   return (
     <Router>
@@ -30,6 +30,9 @@ function App() {
             </>
           }
         />
+
+        {/* Chatbot Page */}
+        <Route path="/chatbot" element={<GroqChatbot />} />
 
         {/* Registration Page */}
         <Route path="/register" element={<UserRegistration />} />

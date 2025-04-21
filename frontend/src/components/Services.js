@@ -27,7 +27,8 @@ const Services = () => {
           <div className="col-md-3 col-sm-6 mb-4">
             <div className="single-service">
               <i className="ion-ios-laptop"></i>
-              <h4><a href="chatbot.html">CHATBOT</a></h4>
+              {/* Link to chatbot page */}
+              <h4><Link to="/chatbot">CHATBOT</Link></h4>
               <p>Get instant health support with our AI-powered chatbot.</p>
             </div>
           </div>
