@@ -30,7 +30,7 @@ const Header = () => {
           <div className="carousel-item active">
             <div className="carousel-background">
               <img
-                src="https://img.freepik.com/free-photo/medical-banner-with-doctor-wearing-goggles_23-2149611193.jpg?ga=GA1.1.302250554.1741105577&semt=ais_hybrid&w=740"
+                src="https://www.google.com/imgres?q=healthcare%20hd%20image&imgurl=https%3A%2F%2Fwallpapers.com%2Fimages%2Ffeatured%2Fhealthcare-oco8w27tkw40cp90.jpg&imgrefurl=https%3A%2F%2Fwallpapers.com%2Fhealthcare&docid=lVoE31tfv8V0HM&tbnid=Pdtpo4qUiLFXXM&vet=12ahUKEwjHqMKIr_uMAxX6R2cHHW-jM2QQM3oECBoQAA..i&w=1920&h=1107&hcb=2&ved=2ahUKEwjHqMKIr_uMAxX6R2cHHW-jM2QQM3oECBoQAA"
                 alt="Doctor wearing goggles"
               />
             </div>

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './index.css';
 import axios from 'axios';
 
 const Signup = () => {
@@ -11,7 +10,6 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const response = await axios.post('http://localhost:5000/api/auth/signup', form);
       console.log('Signup Response:', response.data);
@@ -23,37 +21,46 @@ const Signup = () => {
   };
 
   return (
-    <div className="form-container">
-      <h2 className="form-heading">Sign Up</h2>
-      <form onSubmit={handleSubmit} className="form-content">
-        <input
-          type="text"
-          name="username"
-          placeholder="Name"
-          onChange={handleChange}
-          required
-          className="form-input"
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          onChange={handleChange}
-          required
-          className="form-input"
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          onChange={handleChange}
-          required
-          className="form-input"
-        />
-        <button type="submit" className="form-btn">
-          Sign Up
+    <div style={{ display: 'flex', height: '100vh', fontFamily: 'Arial, sans-serif' }}>
+      <div style={{ flex: 1, backgroundColor: '#00bcd4', color: 'white', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+        <h2>Welcome Friend</h2>
+        <p>To keep connected with us, please login with your personal info</p>
+        <button style={{ marginTop: '20px', padding: '10px 20px', backgroundColor: 'white', color: '#00bcd4', border: 'none', borderRadius: '20px', cursor: 'pointer' }}>
+          Sign In
         </button>
-      </form>
+      </div>
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+        <h2>Create Account</h2>
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', width: '300px' }}>
+          <input
+            type="text"
+            name="username"
+            placeholder="Name"
+            onChange={handleChange}
+            required
+            style={{ margin: '10px 0', padding: '10px', borderRadius: '20px', border: '1px solid #ccc' }}
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            onChange={handleChange}
+            required
+            style={{ margin: '10px 0', padding: '10px', borderRadius: '20px', border: '1px solid #ccc' }}
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            onChange={handleChange}
+            required
+            style={{ margin: '10px 0', padding: '10px', borderRadius: '20px', border: '1px solid #ccc' }}
+          />
+          <button type="submit" style={{ marginTop: '10px', padding: '10px', borderRadius: '20px', backgroundColor: '#00bcd4', color: 'white', border: 'none', cursor: 'pointer' }}>
+            Sign Up
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

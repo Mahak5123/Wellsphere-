@@ -1,10 +1,19 @@
-import pandas as pd
-import numpy as np
+# import pandas as pd
+# import numpy as np
+# from flask import Flask, request, jsonify
+# import pickle
+# import os
+
+# app = Flask(__name__)
 from flask import Flask, request, jsonify
+from flask_cors import CORS  
 import pickle
 import os
+import pandas as pd
+import numpy as np
 
 app = Flask(__name__)
+CORS(app) 
 
 # Load the trained model
 try:

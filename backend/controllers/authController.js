@@ -1,6 +1,8 @@
+// authController.js
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 
+// Signup route
 exports.signup = async (req, res) => {
   const { username, email, password } = req.body;
   try {
@@ -16,6 +18,7 @@ exports.signup = async (req, res) => {
   }
 };
 
+// Login route
 exports.login = async (req, res) => {
   const { email, password } = req.body;
   try {

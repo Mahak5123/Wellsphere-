@@ -15,13 +15,16 @@ app.use(cors());
 app.use('/api/auth', authRoutes);
 
 // MongoDB connection string
-const MONGO_URI = 'mongodb://localhost:27017/';  // Replace this with your actual MongoDB connection string
+const MONGO_URI = 'mongodb://localhost:27017/userAuthApp';  // Fixed URI with DB name
 
 // Connect to MongoDB
-mongoose.connect(MONGO_URI)
-  .then(() => {
-    app.listen(5000, () => {  // Use the port you want, here we use 5000
-      console.log('Server running on port 5000');
-    });
-  })
-  .catch((err) => console.error('Error connecting to MongoDB:', err));  // Error handling
+mongoose.connect(MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => {
+  app.listen(5000, () => {
+    console.log('Server running on port 5000');
+  });
+})
+.catch((err) => console.error('Error connecting to MongoDB:', err));

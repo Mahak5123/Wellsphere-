@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
-import './index.css'; // Make sure Bootstrap and your styles are included
+import { Link } from 'react-router-dom'; // Already imported
+import './index.css';
 
 const Services = () => {
   return (
@@ -13,38 +13,39 @@ const Services = () => {
           </p>
         </header>
 
-        {/* Single row with 4 columns */}
         <div className="row text-center">
+          {/* Registration */}
           <div className="col-md-3 col-sm-6 mb-4">
             <div className="single-service">
               <i className="ion-ios-desktop"></i>
-              {/* Use Link component for routing */}
               <h4><Link to="/register">USER REGISTRATION</Link></h4>
               <p>Easily sign up to access personalized health services.</p>
             </div>
           </div>
 
+          {/* Chatbot */}
           <div className="col-md-3 col-sm-6 mb-4">
             <div className="single-service">
               <i className="ion-ios-laptop"></i>
-              {/* Link to chatbot page */}
               <h4><Link to="/chatbot">CHATBOT</Link></h4>
               <p>Get instant health support with our AI-powered chatbot.</p>
             </div>
           </div>
 
+          {/* Dashboard */}
           <div className="col-md-3 col-sm-6 mb-4">
             <div className="single-service">
               <i className="ion-ios-tablet-portrait"></i>
-              <h4><a href="dashboard.html">DASHBOARD</a></h4>
-              <p>Track and manage your daily health activities effortlessly.</p>
+              <h4><Link to="/mood-recommendation">MOOD ENHANCER</Link></h4> {/* Update this link */}
+              <p>Track and manage your daily mood activities effortlessly.</p>
             </div>
           </div>
 
+          {/* Disease Predictor (ML Model) */}
           <div className="col-md-3 col-sm-6 mb-4">
             <div className="single-service">
               <i className="ion-ios-phone-portrait"></i>
-              <h4><a href="selfcare.html">DISEASE SPECIFIC GUIDE & SELF CARE PLAN</a></h4>
+              <h4><Link to="/disease-predictor">DISEASE SPECIFIC GUIDE & SELF CARE PLAN</Link></h4>
               <p>Personalized self-care recommendations powered by AI.</p>
             </div>
           </div>
