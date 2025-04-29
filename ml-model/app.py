@@ -1,19 +1,12 @@
-# import pandas as pd
-# import numpy as np
-# from flask import Flask, request, jsonify
-# import pickle
-# import os
-
-# app = Flask(__name__)
-from flask import Flask, request, jsonify
-from flask_cors import CORS  
-import pickle
-import os
 import pandas as pd
 import numpy as np
+from flask import Flask, request, jsonify
+import pickle
+import os
+from flask_cors import CORS  
 
 app = Flask(__name__)
-CORS(app) 
+CORS(app)
 
 # Load the trained model
 try:
@@ -48,16 +41,16 @@ def information(predicted_dis):
     disease_description = " ".join(disease_description) if not disease_description.empty else "No description available."
 
     disease_precautions = precautions[precautions['Disease'] == predicted_dis][['Precaution_1', 'Precaution_2', 'Precaution_3', 'Precaution_4']].values
-    disease_precautions = disease_precautions[0].tolist() if disease_precautions.size > 0 else "No precautions available."
+    disease_precautions = disease_precautions[0].tolist() if disease_precautions.size > 0 else []
 
     disease_medications = medications[medications['Disease'] == predicted_dis]['Medication'].values
-    disease_medications = disease_medications.tolist() if disease_medications.size > 0 else "No medications available."
+    disease_medications = disease_medications.tolist() if disease_medications.size > 0 else []
 
     disease_diet = diets[diets['Disease'] == predicted_dis]['Diet'].values
-    disease_diet = disease_diet.tolist() if disease_diet.size > 0 else "No diet recommendations available."
+    disease_diet = disease_diet.tolist() if disease_diet.size > 0 else []
 
     disease_workout = workout[workout['disease'] == predicted_dis]['workout'].values
-    disease_workout = disease_workout.tolist() if disease_workout.size > 0 else "No workout recommendations available."
+    disease_workout = disease_workout.tolist() if disease_workout.size > 0 else []
 
     return disease_description, disease_precautions, disease_medications, disease_diet, disease_workout
 

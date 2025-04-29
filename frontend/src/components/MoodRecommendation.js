@@ -1,51 +1,68 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-// Define the mood-based challenges, advice, and humor
+// Define mood-based challenges, advice, and humor
 const moodData = {
   Happy: {
-    advice: "You're radiating positivity today! Keep spreading that joy. Just remember, even the brightest stars need their rest—don’t forget to recharge!",
-    challenge: "Send a quick note of appreciation to someone who has brightened your day. It'll make both of you smile.",
-    joke: "Why don’t skeletons fight each other? They don’t have the guts! 😄",
+    advice: "You're radiating positivity today! Keep spreading that joy. Remember to recharge too! Positive energy is contagious, but so is self-care.",
+    challenge: "Send a message of appreciation to someone you care about. It's a simple gesture that can brighten both your and their day.",
+    joke: "Student: 'I don’t understand this question, can you explain it to me?'\nTeacher: 'You don’t need to understand it, you just need to remember it!'\nStudent: 'So, like the syllabus?' 😄",
     emoji: "😊"
   },
   Sad: {
-    advice: "It's okay to feel down sometimes. Your feelings are valid. Take your time, and don’t forget to be kind to yourself.",
-    challenge: "Try journaling three things you're grateful for, no matter how small. It can be a great way to shift focus.",
-    joke: "Why don't scientists trust atoms? Because they make up everything! 😆",
+    advice: "It's okay to feel down. Be kind to yourself and allow time for healing. Remember that emotional ups and downs are a part of life and seeking support is a strength.",
+    challenge: "Write down three things you’re grateful for today. Shifting your focus to gratitude can help lift your mood, even when times are tough.",
+    joke: "Teacher: 'Why are you late?'\nStudent: 'Because of the sign.'\nTeacher: 'What sign?'\nStudent: 'The one that says 'School Ahead, Slow Down.'' 😂",
     emoji: "😞"
   },
   Anxious: {
-    advice: "Take it slow and breathe deeply. Try focusing on the present moment. Everything will work out, step by step.",
-    challenge: "Find a quiet space, close your eyes, and take five minutes to practice deep breathing. Breathe in for 4 sec, hold for 4 sec, and exhale for 4 sec.",
-    joke: "I told my computer I needed a break, and it froze! 😜",
+    advice: "Focus on the present moment and take deep breaths. You’re doing your best. Anxiety can be overwhelming, but remember: deep breaths help calm the mind and body.",
+    challenge: "Practice deep breathing: inhale for 4s, hold for 4s, exhale for 4s. This can activate your body’s relaxation response and reduce anxiety.",
+    joke: "Student: 'Can I go to the bathroom?'\nTeacher: 'I don’t know, can you?'\nStudent: 'I didn’t ask if I could, I asked if I may.'\nTeacher: 'Nice try. Go ahead, but I’m marking you for using proper English!' 😎",
     emoji: "😰"
   },
   Angry: {
-    advice: "It’s okay to feel frustrated. Rather than bottling it up, try to release it through gentle physical activity or a change of scenery.",
-    challenge: "Take a 10-minute walk in nature or do some stretches to release that built-up tension.",
-    joke: "I burned 1,000 calories yesterday... I forgot the pizza in the oven! 🍕😂",
+    advice: "Release the anger through a peaceful walk or stretching. Calmness will return. Anger can often cloud your judgment, so taking a moment to clear your mind can help.",
+    challenge: "Take a 10-minute nature walk or do light stretches. Physical activity can help release pent-up tension and improve your mood.",
+    joke: "Teacher: 'You’re always talking in class.'\nStudent: 'I know, I can’t help it. I’m very social.'\nTeacher: 'Well, your social skills will definitely help you when you’re paying your bills someday.' 😂",
     emoji: "😡"
   },
   Tired: {
-    advice: "Your body is asking for rest, and it’s crucial to listen to it. Taking short breaks and getting rest can make all the difference.",
-    challenge: "Take a 20-minute power nap. Recharging now will help you feel more focused and energized later!",
-    joke: "Why don’t eggs tell jokes? They might crack up! 🥚😆",
+    advice: "Rest is essential. Give yourself permission to recharge. Fatigue can cloud your judgment and decrease productivity. Take breaks when you need them.",
+    challenge: "Take a 20-minute power nap or mindful break. A short rest can help improve focus, creativity, and overall well-being.",
+    joke: "Student: 'Teacher, I don’t get it, I studied hard and still failed!'\nTeacher: 'Don’t worry, it’s just a minor setback.'\nStudent: 'Well, in that case, can I major in passing?' 😂",
     emoji: "😴"
   }
 };
 
+// Improved Mental Health Questions
 const mentalHealthQuestions = [
-  { question: "How are you feeling today?", options: ["Happy", "Sad", "Anxious", "Angry", "Tired"] },
-  { question: "How stressed are you today?", options: ["Low", "Medium", "High"] },
-  { question: "How well did you sleep last night?", options: ["Good", "Okay", "Poor"] },
-  { question: "How easy is it to focus on tasks today?", options: ["Yes", "No", "Sometimes"] },
-  { question: "Are you feeling overwhelmed today?", options: ["Yes", "No", "Sometimes"] }
+  {
+    question: "🌤️ How are you feeling emotionally today?",
+    options: ["Joyful", "Calm", "A bit down", "Worried", "Frustrated", "Exhausted"]
+  },
+  {
+    question: "💼 How would you rate your current stress level?",
+    options: ["Very Low", "Manageable", "Moderate", "High", "Overwhelming"]
+  },
+  {
+    question: "🛌 How well did you sleep last night?",
+    options: ["Slept great", "Slept okay", "Had trouble sleeping", "Barely slept"]
+  },
+  {
+    question: "🧠 How is your ability to focus today?",
+    options: ["Very focused", "Somewhat focused", "Distracted", "Very distracted"]
+  },
+  {
+    question: "🌪️ Are you feeling overwhelmed with your tasks?",
+    options: ["Not at all", "A little", "Quite a bit", "Completely overwhelmed"]
+  }
 ];
 
 function MoodRecommendation() {
   const [selectedAnswers, setSelectedAnswers] = useState([]);
   const [mentalState, setMentalState] = useState('');
+  const [currentMoodType, setCurrentMoodType] = useState('');
   const [challengeCompleted, setChallengeCompleted] = useState(false);
   const [clickedButtons, setClickedButtons] = useState({});
 
@@ -55,54 +72,35 @@ function MoodRecommendation() {
     newAnswers[questionIndex] = answer;
     setSelectedAnswers(newAnswers);
 
-    // Mark the button as clicked
-    setClickedButtons((prevState) => ({
-      ...prevState,
+    // Mark button as clicked
+    setClickedButtons((prev) => ({
+      ...prev,
       [`${questionIndex}-${answer}`]: true
     }));
   };
 
-  // Analyzing the mental state based on answers
+  // Analyze mood based on selections
   const analyzeMentalState = () => {
-    const [mood, stress, sleep, focus, overwhelmed] = selectedAnswers;
-    let analysis = "";
+    const [emotion, stress, sleep, focus, overwhelm] = selectedAnswers;
     let moodType = "";
 
-    if (stress === "High" || overwhelmed === "Yes") {
-      analysis = "It seems you're feeling quite stressed today. Take a moment to relax and focus on some deep breathing. You’ve got this!";
+    if (stress === "High" || stress === "Overwhelming" || overwhelm === "Quite a bit" || overwhelm === "Completely overwhelmed") {
       moodType = "Anxious";
-    } else if (sleep === "Poor" || focus === "No") {
-      analysis = "It seems like your energy might be low today. A good nap or a short break could work wonders for you!";
+    } else if (sleep === "Had trouble sleeping" || sleep === "Barely slept" || focus === "Distracted" || focus === "Very distracted") {
       moodType = "Tired";
-    } else if (mood === "Sad" || mood === "Very Sad") {
-      analysis = "It's okay to feel down sometimes. You're not alone—take care of yourself, and don't hesitate to reach out to a friend or family member.";
+    } else if (emotion === "A bit down") {
       moodType = "Sad";
-    } else if (mood === "Angry") {
-      analysis = "It looks like you're experiencing some anger. A short walk or some stretching can really help you cool down.";
+    } else if (emotion === "Frustrated") {
       moodType = "Angry";
     } else {
-      analysis = "You're in a great state of mind! Keep up the positivity, and remember to stay balanced.";
       moodType = "Happy";
     }
 
-    setMentalState(analysis);
-    provideRecommendation(moodType);
+    setMentalState(moodData[moodType]?.advice || "Take care of yourself!");
+    setCurrentMoodType(moodType);
   };
 
-  const provideRecommendation = (moodType) => {
-    const recommendation = moodData[moodType];
-    console.log("Mood: ", moodType);
-    console.log("Advice: ", recommendation.advice);
-    console.log("Challenge: ", recommendation.challenge);
-    console.log("Joke: ", recommendation.joke);
-  };
-
-  const handleChallengeCompletion = () => {
-    setChallengeCompleted(true);
-    submitMoodData();  // Optionally send the data when the challenge is completed
-  };
-
-  // Submit mood data to the backend (optional)
+  // Submit mood data
   const submitMoodData = async () => {
     try {
       await axios.post('http://localhost:5000/api/mood', { answers: selectedAnswers });
@@ -112,7 +110,12 @@ function MoodRecommendation() {
     }
   };
 
-  // Trigger the analyzeMentalState function once all questions are answered
+  const handleChallengeCompletion = () => {
+    setChallengeCompleted(true);
+    submitMoodData();
+  };
+
+  // Auto-analyze when all 5 answers selected
   useEffect(() => {
     if (selectedAnswers.length === 5) {
       analyzeMentalState();
@@ -120,22 +123,24 @@ function MoodRecommendation() {
   }, [selectedAnswers]);
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', padding: '4rem 2rem', marginLeft: '2rem', height: '100vh', overflowY: 'scroll' }}>
-      {/* Left side: Heading and soothing image */}
+    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', padding: '4rem 2rem', marginLeft: '2rem', height: '100vh', overflowY: 'auto' }}>
+      
+      {/* Left Panel */}
       <div style={{
         flex: 1,
         textAlign: 'left',
         paddingRight: '2rem',
         position: 'sticky',
         top: '20px',
-        zIndex: 10,
-        backgroundColor: '#fff', // To make sure it has background
+        backgroundColor: '#fff',
         padding: '1rem'
       }}>
-        <h2 style={{ fontSize: '2rem', fontWeight: 'bold', color: '#333', marginBottom: '1rem' }}>WELLSPHERE MOOD ENHANCER</h2>
+        <h2 style={{ fontSize: '2rem', fontWeight: 'bold', color: '#333', marginBottom: '1rem' }}>
+          WELLSPHERE MOOD ENHANCER
+        </h2>
         <img
-          src="/img/mood.jpg"  // Path to your image in the public folder
-          alt="Soothing Image"
+          src="/img/mood.jpg"
+          alt="Mood Enhancer"
           style={{
             width: '300px',
             height: '300px',
@@ -146,8 +151,8 @@ function MoodRecommendation() {
         />
       </div>
 
-      {/* Right side: Questions, analysis, and recommendation */}
-      <div style={{ flex: 2, marginLeft: '2rem', overflowY: 'auto', maxHeight: '100vh' }}>
+      {/* Right Panel */}
+      <div style={{ flex: 2, marginLeft: '2rem', overflowY: 'auto', maxHeight: '100vh', paddingBottom: '2rem' }}>
         <div style={{ margin: '1rem' }}>
           {mentalHealthQuestions.map((q, index) => (
             <div key={index} style={{ marginBottom: '1.5rem' }}>
@@ -161,7 +166,7 @@ function MoodRecommendation() {
                     padding: '0.5rem 1rem',
                     fontSize: '14px',
                     borderRadius: '8px',
-                    backgroundColor: clickedButtons[`${index}-${option}`] ? '#FFA500' : '#FFCC00', // Orange when clicked
+                    backgroundColor: clickedButtons[`${index}-${option}`] ? '#FFA500' : '#FFCC00',
                     color: 'black',
                     border: 'none',
                     cursor: 'pointer',
@@ -174,29 +179,26 @@ function MoodRecommendation() {
             </div>
           ))}
 
-          {/* Show Analysis, Selections, Health Advice, Challenge, and Joke after answering all questions */}
           {selectedAnswers.length === 5 && (
             <div style={{ marginTop: '2rem', padding: '1rem', border: '1px solid #ccc', borderRadius: '10px', maxWidth: '500px', margin: '2rem auto' }}>
-              <h3>Analysis of Your Mental State:</h3>
+              <h3>🧠 Analysis of Your Mood:</h3>
               <p>{mentalState}</p>
 
-              <h3>Your Selections:</h3>
+              <h3>📋 Your Answers:</h3>
               <ul style={{ textAlign: 'left', listStyleType: 'none', paddingLeft: '0' }}>
-                {mentalHealthQuestions.map((q, index) => (
-                  <li key={index}>
-                    <strong>{q.question}</strong>: {selectedAnswers[index] || "Not answered yet"}
-                  </li>
+                {mentalHealthQuestions.map((q, idx) => (
+                  <li key={idx}><strong>{q.question}</strong>: {selectedAnswers[idx]}</li>
                 ))}
               </ul>
 
-              <h3>Health Advice:</h3>
-              <p>{moodData[selectedAnswers[0]]?.advice || 'No advice available'}</p>
+              <h3>🌟 Health Tip:</h3>
+              <p>{moodData[currentMoodType]?.advice}</p>
 
-              <h3>Today's Challenge:</h3>
-              <p>{moodData[selectedAnswers[0]]?.challenge || 'No challenge available'}</p>
+              <h3>🏆 Today's Challenge:</h3>
+              <p>{moodData[currentMoodType]?.challenge}</p>
 
-              <h3>Joke for You:</h3>
-              <p>{moodData[selectedAnswers[0]]?.joke || 'No joke available'}</p>
+              <h3>😂 Here's a Joke:</h3>
+              <pre>{moodData[currentMoodType]?.joke}</pre>
 
               <button
                 onClick={handleChallengeCompletion}
@@ -218,9 +220,8 @@ function MoodRecommendation() {
 
           {challengeCompleted && (
             <div style={{ marginTop: '2rem', padding: '1rem', border: '1px solid #ccc', borderRadius: '10px', maxWidth: '500px', margin: '2rem auto' }}>
-              <h3>You're Amazing!</h3>
-              <p>Great job! You're one step closer to a healthier mind.</p>
-              <p>Stay proud of your progress!</p>
+              <h3>🎉 You're Awesome!</h3>
+              <p>You've taken a beautiful step toward caring for your mind. Stay proud of your progress!</p>
             </div>
           )}
         </div>
