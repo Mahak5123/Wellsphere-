@@ -42,21 +42,13 @@ const UserRegistration = () => {
         // Signup
         const res = await axios.post(endpoint, payload);
         console.log('Signup success:', res.data);
-        alert('Signup successful! Now logging in...');
-
-        // Automatically login without clearing email
-        const loginRes = await axios.post('http://localhost:5000/api/auth/login', { email, password });
-        console.log('Login success:', loginRes.data);
-        alert('Login successful!');
-
-        // Redirect after successful login
-        window.location.href = "/#services";
+        alert('Signup successful! Please login to continue.');
+        setMode('login'); // Switch to login mode
       } else {
         // Login
         const res = await axios.post(endpoint, payload);
         console.log('Login success:', res.data);
         alert('Login successful!');
-
         window.location.href = "/#services";
       }
     } catch (err) {

@@ -105,7 +105,7 @@ const Header = () => {
               flexDirection: 'column',
               textAlign: 'center',
               color: '#fff',
-              background: 'rgba(0, 0, 0, 0.4)',
+              background: 'rgba(0, 0, 0, 0.8)',
               padding: '0 20px',
             }}
           >
