@@ -6,8 +6,8 @@
 
 ## 🔗 Live Demo
 
-> [Click here to view the live app](https://your-live-deployment-url.com)  
-> *(Replace with deployed link if hosted on Vercel, Netlify, or Render)*
+> [Click here to view the demo](https://your-live-deployment-url.com)  
+
 
 ---
 
