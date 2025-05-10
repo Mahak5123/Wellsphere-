@@ -52,7 +52,6 @@
 | **ML Model**    | Python, Flask, scikit-learn, Pandas      |
 | **Chatbot API** | Groq API (OpenAI Compatible)             |
 | **Auth**        | JWT (JSON Web Token)                     |
-| **Deployment**  | Vercel / Render / Netlify *(as applicable)* |
 
 ---
 ## Installation and Setup
