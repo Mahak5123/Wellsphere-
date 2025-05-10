@@ -11,7 +11,7 @@
 
 ---
 
-## 📌 Project Objectives
+## Project Objectives
 
 - **Early Diagnosis:** Help users identify possible diseases based on symptoms using AI.
 - **Mental Health Support:** Offer mood detection and wellness suggestions for emotional well-being.
@@ -20,7 +20,7 @@
 
 ---
 
-## 🚀 Features
+##  Features
 
 - **✅ Disease Prediction (95%+ Accuracy):**  
   Predicts possible diseases based on user-input symptoms using a pre-trained Random Forest ML model.
@@ -42,7 +42,7 @@
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Layer           | Technologies                            |
 |----------------|------------------------------------------|
@@ -55,7 +55,7 @@
 | **Deployment**  | Vercel / Render / Netlify *(as applicable)* |
 
 ---
-## ⚙️ Installation and Setup
+## Installation and Setup
 
 Follow these steps to get the project up and running locally on your machine.
 
@@ -100,7 +100,7 @@ Once all the servers are running, open the following URLs in your browser:
 - **Backend (Node.js):** `http://localhost:5000`
 - **ML API (Flask):** `http://localhost:5001`
 
-  ## 📡 API Endpoints
+  ## API Endpoints
 
 ### Backend (Node.js)
 
@@ -115,26 +115,26 @@ Once all the servers are running, open the following URLs in your browser:
 |--------|-----------------|---------------------------------------|
 | POST   | /predict        | Predict disease from symptom input   |
 
-## 📈 Performance Stats
+## Performance Stats
 
 - **Disease Prediction Accuracy**: 95.3%
 - **Mood Detection Accuracy**: 87.6% (based on a test group of 100+ users)
 - **Chatbot Response Time**: < 1 second (Groq API)
 - **Frontend Load Time**: ~0.9s on average (Lighthouse audit)
 
-## 👩‍💻 Contributor
+## Contributor
 
 - **Mahak Salecha**  
   [GitHub](https://github.com/Mahak5123) | [LinkedIn](https://www.linkedin.com/in/mahak-salecha-9b5073271/)
 - **Shriya Mishra**  
   [GitHub](https://github.com/Mahak5123) | [LinkedIn](https://www.linkedin.com/in/shriya-mishra-0b13aa298/)
 
-## 📝 License
+## License
 
 This project is licensed under the **MIT License**.  
 See the [LICENSE](LICENSE) file for more information.
 
-## 📬 Contact
+## Contact
 
 If you’d like to connect, contribute, or discuss collaborations:
 
