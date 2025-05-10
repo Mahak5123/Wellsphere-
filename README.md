@@ -22,22 +22,22 @@
 
 ##  Features
 
-- **✅ Disease Prediction (95%+ Accuracy):**  
+- **Disease Prediction (95%+ Accuracy):**  
   Predicts possible diseases based on user-input symptoms using a pre-trained Random Forest ML model.
 
-- **✅ AI Health Chatbot (Groq API):**  
+- **AI Health Chatbot (Groq API):**  
   Provides real-time responses to health queries, basic remedies, and emotional support.
 
-- **✅ Mood-Based Daily Wellness Engine (87% Accuracy):**  
+- **Mood-Based Daily Wellness Engine (87% Accuracy):**  
   Detects user's mood using NLP-based analysis of a 5-question input and suggests relevant challenges or messages.
 
-- **✅ City-Based Hospital Recommendations:**  
+- **City-Based Hospital Recommendations:**  
   Displays a list of nearby hospitals based on the user's city for timely access to medical help.
 
-- **✅ Secure User Authentication:**  
+- **Secure User Authentication:**  
   Registration and login handled via JWT, connected to a real-time MongoDB backend.
 
-- **✅ Responsive Frontend Design:**  
+- **Responsive Frontend Design:**  
   Clean, intuitive, and responsive UI built with React.js and Tailwind CSS for a seamless user experience across devices.
 
 ---
@@ -138,6 +138,6 @@ See the [LICENSE](LICENSE) file for more information.
 
 If you’d like to connect, contribute, or discuss collaborations:
 
-- **Email**: mahaksalecha61@example.com 
+- **Email**: mahaksalecha61@gmail.com 
 
 
